@@ -1,0 +1,26 @@
+{
+  "name": "alteah-assignment",
+  "version": "1.0.0",
+  "description": "Altea health ADT Project",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oshalash38/alteah-assignment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oshalash38/alteah-assignment/issues"
+  },
+  "homepage": "https://github.com/oshalash38/alteah-assignment#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
