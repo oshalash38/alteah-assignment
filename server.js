@@ -1,8 +1,10 @@
 import express from 'express';
 import patients from './patients.js';
+import cors from 'cors';
 
 // Init app
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Setup event handlers/api
@@ -16,12 +18,13 @@ app.get('/patients', (req, res) => {
   }
 });
 
+let newID = 0;
+
 app.post('/admit', (req, res) => {
-  const { patientID, fName, lName, dob, gender, admissionDate, currentBed } =
-    req.body;
+  const { fName, lName, dob, gender, admissionDate, currentBed } = req.body;
   try {
     const newPatient = {
-      patientID: patientID,
+      patientID: newID,
       fName: fName,
       lName: lName,
       dob: dob,
@@ -32,6 +35,7 @@ app.post('/admit', (req, res) => {
     };
     patients.push(newPatient);
     res.send(newPatient);
+    newID++;
   } catch (error) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -39,11 +43,12 @@ app.post('/admit', (req, res) => {
 });
 
 app.put('/discharge', (req, res) => {
-  const { id, dischargeDate } = req.body;
+  const { patientID, dischargeDate } = req.body;
   try {
-    const patient = patients.find((p) => p.id === id);
+    const patient = patients.find((p) => p.patientID === patientID);
     if (patient) {
       patient.dischargeDate = dischargeDate;
+      patient.currentBed = 'N/A';
       res.status(200).send(patient);
     } else {
       res.status(404).send({ message: 'Patient not found' });
@@ -55,9 +60,9 @@ app.put('/discharge', (req, res) => {
 });
 
 app.put('/transfer', (req, res) => {
-  const { id, currentBed } = req.body;
+  const { patientID, currentBed } = req.body;
   try {
-    const patient = patients.find((p) => p.id === id);
+    const patient = patients.find((p) => p.patientID === patientID);
     if (patient) {
       patient.currentBed = currentBed;
       res.status(200).send(patient);
