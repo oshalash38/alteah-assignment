@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import BtnGroup from './BtnGroup';
 
-function Patient({ patient, handleBtnClick }) {
+function Patient({ patient, handleBtnClick, isActive, onToggle }) {
   const uniqueId = `flush-collapse${patient.patientID}`;
   const headingId = `flush-heading${patient.patientID}`;
 
@@ -11,11 +11,12 @@ function Patient({ patient, handleBtnClick }) {
         <div className='accordion-item'>
           <h2 className='accordion-header' id={headingId}>
             <button
-              className='accordion-button collapsed'
+              className={`accordion-button ${
+                isActive ? '' : 'collapsed'
+              } centered`}
               type='button'
-              data-bs-toggle='collapse'
-              data-bs-target={`#${uniqueId}`}
-              aria-expanded='false'
+              onClick={onToggle}
+              aria-expanded={isActive}
               aria-controls={uniqueId}
             >
               {patient.fName} {patient.lName}
@@ -23,7 +24,7 @@ function Patient({ patient, handleBtnClick }) {
           </h2>
           <div
             id={uniqueId}
-            className='accordion-collapse collapse'
+            className={`accordion-collapse collapse ${isActive ? 'show' : ''}`}
             aria-labelledby={headingId}
             data-bs-parent='#accordionFlushExample'
           >

@@ -10,7 +10,7 @@ function AdmitBtn() {
     <button
       onClick={handleClick}
       type='submit'
-      className='btn btn-primary admit-btn'
+      className='btn btn-primary admit-btn centered'
     >
       Admit New Patient
     </button>

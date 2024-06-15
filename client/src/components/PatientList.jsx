@@ -7,6 +7,7 @@ import TransferModal from './TransferModal';
 
 function PatientList({ patients, setPatients }) {
   const [currentPatient, setCurrentPatient] = useState(null);
+  const [activePatientId, setActivePatientId] = useState(null);
 
   const navigate = useNavigate();
 
@@ -51,23 +52,28 @@ function PatientList({ patients, setPatients }) {
       setPatients(newPatients);
     } catch (error) {
       alert(error.response.data.message);
-      console.error('Error transfering patient:', error);
+      console.error('Error transferring patient:', error);
     } finally {
       navigate('/');
     }
   };
+
+  const toggleAccordion = (patientId) => {
+    setActivePatientId(activePatientId === patientId ? null : patientId);
+  };
+
   return (
     <div className='patient-list'>
       <div className='accordion accordion-flush' id='accordionFlushExample'>
-        {patients.map((patient) => {
-          return (
-            <Patient
-              key={patient.patientID}
-              patient={patient}
-              handleBtnClick={handleBtnClick}
-            />
-          );
-        })}
+        {patients.map((patient) => (
+          <Patient
+            key={patient.patientID}
+            patient={patient}
+            handleBtnClick={handleBtnClick}
+            isActive={activePatientId === patient.patientID}
+            onToggle={() => toggleAccordion(patient.patientID)}
+          />
+        ))}
       </div>
       <DischargeModal
         patient={currentPatient}
