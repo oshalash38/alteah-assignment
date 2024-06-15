@@ -1,12 +1,8 @@
 import React from 'react';
 import { Modal } from 'bootstrap';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 const DischargeModal = ({ patient, handleDischarge }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log('WTF IS GOING ON Patient:', patient);
-  }, [patient]);
 
   const submitDischargeForm = () => {
     const dischargeDate = document.getElementById('dischargeDate').value;

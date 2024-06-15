@@ -1,7 +1,23 @@
 .App {
   text-align: center;
+  padding: 1em 1em;
 }
 
+.patient-list {
+  margin-bottom: 30px;
+
+}
+
+.admit-form {
+  padding: 3em;
+}
+.centered {
+  text-align: center;
+
+}
+h1 {
+  margin: 3%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

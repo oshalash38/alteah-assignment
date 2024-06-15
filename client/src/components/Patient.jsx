@@ -41,7 +41,11 @@ function Patient({ patient, handleBtnClick }) {
                 </li>
                 <li>Current Bed: {patient.currentBed}</li>
               </ul>
-              <BtnGroup patient={patient} onBtnClick={handleBtnClick} />
+              {patient.dischargeDate && patient.currentBed === 'N/A' ? (
+                'Patient Discharged'
+              ) : (
+                <BtnGroup patient={patient} onBtnClick={handleBtnClick} />
+              )}
             </div>
           </div>
         </div>

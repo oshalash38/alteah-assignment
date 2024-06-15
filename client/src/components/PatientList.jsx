@@ -29,6 +29,7 @@ function PatientList({ patients, setPatients }) {
       );
       setPatients(newPatients);
     } catch (error) {
+      alert(error.response.data.message);
       console.error('Error discharging patient:', error);
     } finally {
       navigate('/');
@@ -49,13 +50,14 @@ function PatientList({ patients, setPatients }) {
       );
       setPatients(newPatients);
     } catch (error) {
-      console.error('Error discharging patient:', error);
+      alert(error.response.data.message);
+      console.error('Error transfering patient:', error);
     } finally {
       navigate('/');
     }
   };
   return (
-    <div>
+    <div className='patient-list'>
       <div className='accordion accordion-flush' id='accordionFlushExample'>
         {patients.map((patient) => {
           return (

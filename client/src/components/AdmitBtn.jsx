@@ -7,7 +7,11 @@ function AdmitBtn() {
     navigate('/admit');
   };
   return (
-    <button onClick={handleClick} type='submit' className='btn btn-primary'>
+    <button
+      onClick={handleClick}
+      type='submit'
+      className='btn btn-primary admit-btn'
+    >
       Admit New Patient
     </button>
   );

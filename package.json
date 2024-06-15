@@ -19,7 +19,8 @@
   "homepage": "https://github.com/oshalash38/alteah-assignment#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"
