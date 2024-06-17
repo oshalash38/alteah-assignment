@@ -6,10 +6,12 @@ This is my submission for the ADT Event Handler assignment. This project handles
 
 This project uses Node.js and Express for the backend API. To spin the backend, make sure to have Node.js installed. Then, from the project root directory run
 
+`npm install`
 `nodemon start`
 
 For the frontend, I used React. To spin the frontend, make sure to have React installed. Then, from the project root directory navigate to the client folder
 
+`npm install`
 `cd client`
 
 Then run
