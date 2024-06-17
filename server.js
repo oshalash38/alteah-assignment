@@ -86,6 +86,9 @@ app.put(
     body('dischargeDate')
       .isDate()
       .withMessage('Discharge date is required and must be a valid date'),
+    body('admissionDate')
+      .isDate()
+      .withMessage('Admission date is required and must be a valid date'),
   ],
   (req, res) => {
     const errors = validationResult(req);
@@ -93,13 +96,27 @@ app.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { patientID, dischargeDate } = req.body;
+    const { patientID, dischargeDate, admissionDate } = req.body;
     try {
       const patient = patients.find((p) => p.patientID === patientID);
       if (patient) {
-        patient.dischargeDate = dischargeDate;
-        patient.currentBed = 'N/A';
-        res.status(200).send(patient);
+        console.log(dischargeDate);
+        console.log(admissionDate);
+
+        let currDischargeDate = new Date(dischargeDate);
+        let currAdmissionDate = new Date(admissionDate);
+
+        console.log(currDischargeDate);
+        console.log(currAdmissionDate);
+        if (currDischargeDate < currAdmissionDate) {
+          res.status(400).send({
+            message: 'Discharge date cannot be earlier than admission date',
+          });
+        } else {
+          patient.dischargeDate = dischargeDate;
+          patient.currentBed = 'N/A';
+          res.status(200).send(patient);
+        }
       } else {
         res.status(404).send({ message: 'Patient not found' });
       }

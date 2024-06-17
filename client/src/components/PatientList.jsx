@@ -23,6 +23,7 @@ function PatientList({ patients, setPatients }) {
       const response = await axios.put('http://localhost:5001/discharge', {
         patientID: patient.patientID,
         dischargeDate: dischargeDate,
+        admissionDate: patient.admissionDate,
       });
       console.log(response);
       const newPatients = patients.map((patient) =>
